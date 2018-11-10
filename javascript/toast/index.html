@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Toast Message Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    button {
+        
+    }
+    .toast {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        padding: 10px;
+        background-color: gray;
+    }
+    .hidden {
+        display: none;
+    }
+
+    </style>
+</head>
+<body>
+    <input type="text" id="inputToast" placeholder="토스트에 띄울 메시지를 적으세요" value="토스트메시지!"/>
+    <button id="toastButton">토스트메시지띄우기</button>
+    <div class="toast hidden">
+        
+    </div>
+    <script>
+        var toastButton = document.getElementById('toastButton');
+        toastButton.addEventListener('click', clickToastButton);
+
+        function clickToastButton() {
+            document.querySelector('.toast').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
