@@ -9,15 +9,69 @@
     button {
         
     }
-    .toast {
+    #toast {
+        visibility: hidden;
         position: fixed;
-        left: 50%;
-        top: 50%;
-        padding: 10px;
-        background-color: gray;
+        padding: 10px 15px;
+        border-radius: 10px;
+        min-width: 180px;
+        text-align: center;
+        color: #636e72;
+        background-color: #dfe6e9;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        top: 20px;
+        z-index: 1;
     }
-    .hidden {
-        display: none;
+    
+    #toast.show {
+        visibility: visible;
+        -webkit-animation: fade-in 0.5s both, fade-out 0.5s 2.5s;
+        animation: fade-in 0.5s both, fade-out 0.5s 2.5s;
+
+    }
+
+    @-webkit-keyframes fade-in {
+        from {
+            opacity: 0;
+            right: 0;
+        }
+        to {
+            opacity: 1;
+            right: 30px;
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            right: 0;
+        }
+        to {
+            opacity: 1;
+            right: 30px;
+        }
+    }
+
+    @-webkit-keyframes fade-out {
+        from {
+            opacity: 1;
+            right: 30px;
+        }
+        to {
+            opacity: 0;
+            right: 0;
+        }
+    }
+
+    @keyframes fade-out {
+        from {
+            opacity: 1;
+            right: 30px;
+        }
+        to {
+            opacity: 0;
+            right: 0;
+        }
     }
 
     </style>
@@ -25,15 +79,23 @@
 <body>
     <input type="text" id="inputToast" placeholder="토스트에 띄울 메시지를 적으세요" value="토스트메시지!"/>
     <button id="toastButton">토스트메시지띄우기</button>
-    <div class="toast hidden">
+    <div id="toast">
         
     </div>
     <script>
         var toastButton = document.getElementById('toastButton');
         toastButton.addEventListener('click', clickToastButton);
-
+        var toast = document.getElementById('toast');
+        var isToastShown = false;
         function clickToastButton() {
-            document.querySelector('.toast').classList.remove('hidden');
+            if (isToastShown) return;
+            isToastShown = true;
+            toast.classList.add('show');
+            toast.innerHTML = document.getElementById('inputToast').value;
+            setTimeout(function() {
+                toast.classList.remove('show');
+                isToastShown = false;
+            }, 3000);
         }
     </script>
 </body>
