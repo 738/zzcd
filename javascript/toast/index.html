@@ -1,102 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Toast Message Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    button {
-        
-    }
-    #toast {
-        visibility: hidden;
-        position: fixed;
-        padding: 10px 15px;
-        border-radius: 10px;
-        min-width: 180px;
-        text-align: center;
-        color: #636e72;
-        background-color: #dfe6e9;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        top: 20px;
-        z-index: 1;
-    }
-    
-    #toast.show {
-        visibility: visible;
-        -webkit-animation: fade-in 0.5s both, fade-out 0.5s 2.5s;
-        animation: fade-in 0.5s both, fade-out 0.5s 2.5s;
+        #toast {
+            position: fixed;
+            visibility: hidden;
+            min-width: 200px;
+            padding: 10px 15px;
+            background-color: #b2bec3;
+            color: #2d3436;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            z-index: 1;
+            top: 20px;
+        }
 
-    }
+        #toast.show {
+            visibility: visible;
+            -webkit-animation: fade-in 0.7s both, fade-out 0.7s 2.5s;
+            animation: fade-in 0.7s both, fade-out 0.7s 2.5s;
+        }
 
-    @-webkit-keyframes fade-in {
-        from {
-            opacity: 0;
-            right: 0;
+        @-webkit-keyframes fade-in {
+            from {
+                opacity: 0;
+                right: 0;
+            }
+            to {
+                opacity: 1;
+                right: 30px;
+            }
         }
-        to {
-            opacity: 1;
-            right: 30px;
-        }
-    }
 
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-            right: 0;
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                right: 0;
+            }
+            to {
+                opacity: 1;
+                right: 30px;
+            }
         }
-        to {
-            opacity: 1;
-            right: 30px;
-        }
-    }
 
-    @-webkit-keyframes fade-out {
-        from {
-            opacity: 1;
-            right: 30px;
+        @-webkit-keyframes fade-out {
+            from {
+                opacity: 1;
+                right: 30px;
+            }
+            to {
+                opacity: 0;
+                right: 0;
+            }
         }
-        to {
-            opacity: 0;
-            right: 0;
-        }
-    }
 
-    @keyframes fade-out {
-        from {
-            opacity: 1;
-            right: 30px;
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+                right: 30px;
+            }
+            to {
+                opacity: 0;
+                right: 0;
+            }
         }
-        to {
-            opacity: 0;
-            right: 0;
-        }
-    }
-
     </style>
 </head>
+
 <body>
-    <input type="text" id="inputToast" placeholder="토스트에 띄울 메시지를 적으세요" value="토스트메시지!"/>
-    <button id="toastButton">토스트메시지띄우기</button>
-    <div id="toast">
-        
-    </div>
+    <input type="text" id="toastInput" placeholder="토스트에 넣을 메시지를 적어주세요." value="안녕하세요! 지존코딩입니다.">
+    <button id="toastButton">토스트 띄우기</button>
+    <div id="toast"></div>
     <script>
-        var toastButton = document.getElementById('toastButton');
-        toastButton.addEventListener('click', clickToastButton);
-        var toast = document.getElementById('toast');
-        var isToastShown = false;
-        function clickToastButton() {
+        const toast = document.getElementById('toast');
+        let isToastShown = false;
+        document.getElementById('toastButton').addEventListener('click', function() {
             if (isToastShown) return;
             isToastShown = true;
+            if (document.getElementById('toastInput').value === "") {
+                alert('입력해주세요!');
+                return;
+            }
             toast.classList.add('show');
-            toast.innerHTML = document.getElementById('inputToast').value;
+            toast.innerHTML = document.getElementById('toastInput').value;
             setTimeout(function() {
                 toast.classList.remove('show');
                 isToastShown = false;
-            }, 3000);
-        }
+            }, 3200);
+        });
+    
     </script>
 </body>
 </html>
