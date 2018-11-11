@@ -4,96 +4,64 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Toast Message Example</title>
+    <title>Toast Message</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         #toast {
-            position: fixed;
             visibility: hidden;
-            min-width: 200px;
-            padding: 10px 15px;
-            background-color: #b2bec3;
-            color: #2d3436;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            z-index: 1;
-            top: 20px;
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 100px;
+            border-radius: 25px;
+            background-color: #666666;
+            color: #FFFFFF;
+            padding: 15px 25px;
         }
 
         #toast.show {
             visibility: visible;
-            -webkit-animation: fade-in 0.7s both, fade-out 0.7s 2.5s;
-            animation: fade-in 0.7s both, fade-out 0.7s 2.5s;
-        }
-
-        @-webkit-keyframes fade-in {
-            from {
-                opacity: 0;
-                right: 0;
-            }
-            to {
-                opacity: 1;
-                right: 30px;
-            }
+            animation: fade-in 700ms, fade-out 700ms 2000ms
         }
 
         @keyframes fade-in {
             from {
                 opacity: 0;
-                right: 0;
             }
             to {
                 opacity: 1;
-                right: 30px;
-            }
-        }
-
-        @-webkit-keyframes fade-out {
-            from {
-                opacity: 1;
-                right: 30px;
-            }
-            to {
-                opacity: 0;
-                right: 0;
             }
         }
 
         @keyframes fade-out {
             from {
                 opacity: 1;
-                right: 30px;
             }
             to {
                 opacity: 0;
-                right: 0;
             }
         }
     </style>
 </head>
 
 <body>
-    <input type="text" id="toastInput" placeholder="토스트에 넣을 메시지를 적어주세요." value="안녕하세요! 지존코딩입니다.">
-    <button id="toastButton">토스트 띄우기</button>
-    <div id="toast"></div>
+    <button id="toastButton">toast button</button>
+    <div id="toast">Toast Message</div>
+
     <script>
         const toast = document.getElementById('toast');
         let isToastShown = false;
-        document.getElementById('toastButton').addEventListener('click', function() {
+        document.getElementById('toastButton').addEventListener('click', function () {
             if (isToastShown) return;
             isToastShown = true;
-            if (document.getElementById('toastInput').value === "") {
-                alert('입력해주세요!');
-                return;
-            }
             toast.classList.add('show');
-            toast.innerHTML = document.getElementById('toastInput').value;
-            setTimeout(function() {
+            setTimeout(function () {
                 toast.classList.remove('show');
                 isToastShown = false;
-            }, 3200);
+            }, 2700);
         });
-    
     </script>
 </body>
+
 </html>
