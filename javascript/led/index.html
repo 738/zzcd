@@ -27,13 +27,16 @@
         padding: 2px;
         color: yellow;
     }
+    .label {
+        color: white;
+    }
     </style>
 </head>
 
 <body>
     <marquee scrollamount="30" id="led">안녕하세요 지존코딩입니다</marquee>
-    <input type="text" id="inputText" oninput="setLEDText();"> <!-- onkeyup도 사용가능 -->
-    색상: <input type="text" id="inputColor" oninput="setLEDColor();">
+    <span class="label">글자: </span><input type="text" id="inputText" oninput="setLEDText();"> <!-- onkeyup도 사용가능 -->
+    <span class="label">색상: </span><input type="text" id="inputColor" oninput="setLEDColor();">
     <script>
         function setLEDText() {
             document.getElementById('led').innerHTML = document.getElementById('inputText').value
