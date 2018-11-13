@@ -8,24 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            margin: 0;
-            background-color: black;
-        }
-
-        #led {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            margin: 0;
-            font-weight: 500;
-            font-size: 250px;
-            color: yellow;
-        }
+        margin: 0;
+        background-color: black;
+    }
+    #led {
+        color: yellow;
+        font-weight: bold;
+        font-size: 250px;
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    #inputText, #inputColor {
+        all: unset;
+        margin: 5px;
+        background-color: rgba(255,255,255,0.5);
+        border-radius: 5px;
+        padding: 2px;
+        color: yellow;
+    }
     </style>
 </head>
 
 <body>
     <marquee scrollamount="30" id="led">안녕하세요 지존코딩입니다</marquee>
+    <input type="text" id="inputText" oninput="setLEDText();"> <!-- onkeyup도 사용가능 -->
+    색상: <input type="text" id="inputColor" oninput="setLEDColor();">
+    <script>
+        function setLEDText() {
+            document.getElementById('led').innerHTML = document.getElementById('inputText').value
+        }
+        function setLEDColor() {
+            document.getElementById('led').style.color = document.getElementById('inputColor').value
+        }
+    </script>
 
 </body>
 
