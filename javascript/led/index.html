@@ -30,19 +30,40 @@
     .label {
         color: white;
     }
+    .hide {
+        visibility: hidden;
+    }
+    #div-toggle {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        opacity: 0.2;
+    }
     </style>
 </head>
 
 <body>
     <marquee scrollamount="30" id="led">안녕하세요 지존코딩입니다</marquee>
-    <span class="label">글자: </span><input type="text" id="inputText" oninput="setLEDText();"> <!-- onkeyup도 사용가능 -->
-    <span class="label">색상: </span><input type="text" id="inputColor" oninput="setLEDColor();">
+    <div id="div-input">
+        <span class="label">글자: </span><input type="text" id="inputText" oninput="setLEDText();" value="hello"> <!-- onkeyup도 사용가능 -->
+        <span class="label">색상: </span><input type="text" id="inputColor" oninput="setLEDColor();" value="yellow">
+    </div>
+    <div id="div-toggle" onclick="toggleHide();"></div>
     <script>
+        var led = document.getElementById('led');
+        led.innerHTML = document.getElementById('inputText').value;
         function setLEDText() {
-            document.getElementById('led').innerHTML = document.getElementById('inputText').value
+            led.innerHTML = document.getElementById('inputText').value;
         }
         function setLEDColor() {
-            document.getElementById('led').style.color = document.getElementById('inputColor').value
+            led.style.color = document.getElementById('inputColor').value;
+            document.getElementById('inputColor').style.color = document.getElementById('inputColor').value;
+        }
+        function toggleHide() {
+            document.getElementById('div-input').classList.toggle('hide');
         }
     </script>
 
